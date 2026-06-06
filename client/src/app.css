@@ -1,0 +1,191 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* Class-based dark mode — .dark on <html> */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background:               hsl(var(--background));
+  --color-foreground:               hsl(var(--foreground));
+  --color-border:                   hsl(var(--border));
+  --color-input:                    hsl(var(--input));
+  --color-ring:                     hsl(var(--ring));
+
+  --color-card:                     hsl(var(--card));
+  --color-card-foreground:          hsl(var(--card-foreground));
+
+  --color-popover:                  hsl(var(--popover));
+  --color-popover-foreground:       hsl(var(--popover-foreground));
+
+  --color-primary:                  hsl(var(--primary));
+  --color-primary-foreground:       hsl(var(--primary-foreground));
+
+  --color-secondary:                hsl(var(--secondary));
+  --color-secondary-foreground:     hsl(var(--secondary-foreground));
+
+  --color-muted:                    hsl(var(--muted));
+  --color-muted-foreground:         hsl(var(--muted-foreground));
+
+  --color-accent:                   hsl(var(--accent));
+  --color-accent-foreground:        hsl(var(--accent-foreground));
+
+  --color-destructive:              hsl(var(--destructive));
+  --color-destructive-foreground:   hsl(var(--destructive-foreground));
+
+  --color-sidebar:                  hsl(var(--sidebar));
+  --color-sidebar-foreground:       hsl(var(--sidebar-foreground));
+  --color-sidebar-border:           hsl(var(--sidebar-border));
+  --color-sidebar-primary:          hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent:           hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+
+  --font-sans:  var(--app-font-sans);
+  --font-mono:  var(--app-font-mono);
+
+  --radius-sm:  calc(var(--radius) - 4px);
+  --radius-md:  calc(var(--radius) - 2px);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) + 4px);
+}
+
+/* ── LIGHT MODE — pale quartzite ──────────────────────────── */
+:root {
+  --background:            200 10% 96%;
+  --foreground:            210 15% 10%;
+  --border:                200 8% 85%;
+  --input:                 200 8% 80%;
+  --ring:                  191 72% 42%;
+
+  --card:                  0 0% 100%;
+  --card-foreground:       210 15% 10%;
+
+  --popover:               0 0% 100%;
+  --popover-foreground:    210 15% 10%;
+
+  --primary:               191 72% 42%;
+  --primary-foreground:    0 0% 100%;
+
+  --secondary:             200 8% 91%;
+  --secondary-foreground:  210 12% 18%;
+
+  --muted:                 200 8% 92%;
+  --muted-foreground:      210 8% 44%;
+
+  --accent:                200 8% 88%;
+  --accent-foreground:     210 12% 14%;
+
+  --destructive:           0 70% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  --sidebar:               200 10% 92%;
+  --sidebar-foreground:    210 12% 18%;
+  --sidebar-border:        200 8% 84%;
+  --sidebar-primary:       191 72% 42%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent:        200 8% 87%;
+  --sidebar-accent-foreground: 210 12% 12%;
+
+  --app-font-sans:  'Plus Jakarta Sans', sans-serif;
+  --app-font-mono:  'JetBrains Mono', monospace;
+  --radius:         0.625rem;
+}
+
+/* ── DARK MODE — polished dark granite + teal ─────────────── */
+.dark {
+  --background:            216 12% 7%;
+  --foreground:            210 10% 90%;
+  --border:                216 10% 13%;
+  --input:                 216 10% 14%;
+  --ring:                  183 60% 48%;
+
+  --card:                  216 11% 9%;
+  --card-foreground:       210 10% 90%;
+
+  --popover:               216 11% 10%;
+  --popover-foreground:    210 10% 90%;
+
+  --primary:               183 60% 48%;
+  --primary-foreground:    216 12% 7%;
+
+  --secondary:             216 10% 11%;
+  --secondary-foreground:  210 8% 84%;
+
+  --muted:                 216 10% 11%;
+  --muted-foreground:      216 6% 46%;
+
+  --accent:                216 10% 13%;
+  --accent-foreground:     210 8% 88%;
+
+  --destructive:           0 60% 46%;
+  --destructive-foreground: 210 10% 90%;
+
+  --sidebar:               216 14% 5%;
+  --sidebar-foreground:    216 6% 68%;
+  --sidebar-border:        216 10% 11%;
+  --sidebar-primary:       183 60% 48%;
+  --sidebar-primary-foreground: 216 12% 7%;
+  --sidebar-accent:        216 10% 10%;
+  --sidebar-accent-foreground: 210 8% 86%;
+}
+
+/* ── BASE ────────────────────────────────────────────────────*/
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-feature-settings: "cv01", "cv02", "cv03", "cv04";
+    letter-spacing: -0.012em;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.022em;
+    font-weight: 600;
+  }
+}
+
+/* ── TYPING INDICATOR ────────────────────────────────────── */
+.typing-indicator { display: flex; align-items: center; gap: 5px; }
+.typing-dot {
+  width: 5px; height: 5px;
+  background-color: currentColor;
+  border-radius: 50%;
+  animation: typing-pulse 1.5s infinite ease-in-out both;
+}
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing-pulse {
+  0%, 60%, 100% { transform: scale(0.55); opacity: 0.28; }
+  30% { transform: scale(1); opacity: 1; }
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.35); }
+
+/* ── PROSE OVERRIDES ─────────────────────────────────────── */
+.prose {
+  --tw-prose-body:     hsl(var(--foreground));
+  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-links:    hsl(var(--primary));
+  --tw-prose-bold:     hsl(var(--foreground));
+  --tw-prose-counters: hsl(var(--muted-foreground));
+  --tw-prose-bullets:  hsl(var(--muted-foreground));
+  --tw-prose-code:     hsl(var(--foreground));
+  --tw-prose-hr:       hsl(var(--border));
+  --tw-prose-th-borders: hsl(var(--border));
+  --tw-prose-td-borders: hsl(var(--border));
+}
+
+/* ── CODE BLOCK (inside prose / markdown) ────────────────── */
+.code-block { position: relative; }
+.code-block:hover .copy-code-btn { opacity: 1; }
+.copy-code-btn { opacity: 0; transition: opacity 0.15s; }
+
+/* ── SELECTION ───────────────────────────────────────────── */
+::selection {
+  background: hsl(var(--primary) / 0.22);
+  color: hsl(var(--foreground));
+}
